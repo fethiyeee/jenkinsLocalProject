@@ -83,8 +83,7 @@
                 <configuration>
                     <runOrder>Alphabetical</runOrder>
                     <includes>
-                        <include>**/CucumberRunner.java</include>
-                        <include>**/FailedRunner.java</include>
+                        <include>**ui/runners/RunnerUI.java</include>
                     </includes>
                     <testFailureIgnore>false</testFailureIgnore>
                 </configuration>

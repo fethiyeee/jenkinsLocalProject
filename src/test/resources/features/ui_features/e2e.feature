@@ -14,5 +14,5 @@ Feature:UI E2E
     And The user closes the page.
     Examples:
       | product name |
-      | elma|
+      | armut|
 

@@ -15,4 +15,7 @@ Feature:UI E2E
     Examples:
       | product name |
       | Cilek1111|
+      | Cilek1111|
+      | Cilek1111|
+      | Cilek1111|
 

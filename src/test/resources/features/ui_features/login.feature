@@ -1,8 +1,9 @@
 @login
 @Regression
-  @smoke
-  @us01
+@smoke
+@us01
 Feature: login
+
   Scenario:US01_TC01 User must be able to login to the Site with a valid URL
     Given User goes to url.
     Then The user verifies that at "https://www.amazon.com/".

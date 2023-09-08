@@ -18,12 +18,12 @@ Feature: Trello Board Create
 
 
   Scenario: Delete Board
-      Given Send request for delete "5ODt1iEV"
+    Given Send request for delete "5ODt1iEV"
 #      Then  Assert status code 200
       #And   Assert Deleting
 
-Scenario: Create example
-  Given birtane board create edelim.
+  Scenario: Create example
+    Given birtane board create edelim.
 
   Scenario: Create a card
     Given birtane card create edelim

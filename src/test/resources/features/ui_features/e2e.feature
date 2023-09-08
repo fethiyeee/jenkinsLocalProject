@@ -1,5 +1,6 @@
 @UIE2e
 Feature:UI E2E
+
   Scenario Outline: e2e
     Given User goes to url.
 #    Then The user clicks the Sign-In button..
@@ -14,8 +15,8 @@ Feature:UI E2E
     And The user closes the page.
     Examples:
       | product name |
-      | Cilek1111|
-      | Cilek1111|
-      | Cilek1111|
-      | Cilek1111|
+      | Cilek1111    |
+      | Cilek1111    |
+      | Cilek1111    |
+      | Cilek1111    |
 

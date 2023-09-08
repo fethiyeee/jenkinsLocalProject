@@ -1,7 +1,8 @@
 @Regression
-  @smoke
-  @product
+@smoke
+@product
 Feature: product
+
   @us04
   Scenario Outline: US04_TC01 When the user searches for a product, all listed products must contain the searched word
 
@@ -11,9 +12,9 @@ Feature: product
     And  The user closes the page.
     Examples:
       | product name |
-      | mango |
-      | nutella |
-      | suite case |
+      | mango        |
+      | nutella      |
+      | suite case   |
 
   @us05
   Scenario Outline:US05_TC01 User should be able to use filters and sorting in product listing process
@@ -25,7 +26,7 @@ Feature: product
     And The user closes the page.
     Examples:
       | product name |
-      | macbook |
+      | macbook      |
       | gaming mouse |
 
 
@@ -38,6 +39,6 @@ Feature: product
     Then The user confirms that the total price of the selected products is the same as the total price in the basket.
   #And The user closes the page.
     Examples:
-      | products |
-      | macbook |
+      | products     |
+      | macbook      |
       | gaming mouse |

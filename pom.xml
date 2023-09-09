@@ -39,8 +39,6 @@
             <scope>test</scope>
         </dependency>
 
-
-
         <dependency>
             <groupId>io.cucumber</groupId>
             <artifactId>cucumber-junit</artifactId>
@@ -158,7 +156,6 @@
                             <testFailureIgnore>false</testFailureIgnore>
                         </configuration>
                     </plugin>
-
 
                 </plugins>
             </build>

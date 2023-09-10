@@ -30,7 +30,7 @@ import java.util.logging.LogManager;
 import java.util.logging.Logger;
 
 public class amazonStepDefinitions {
-    AmazonPage amazonPage=new AmazonPage();
+    AmazonPage amazonPage = new AmazonPage();
 
 
     @And("Sayfa URL’inin {string} oldugunu dogrulayin")
@@ -38,9 +38,6 @@ public class amazonStepDefinitions {
         Assert.assertEquals(Driver.getDriver().getCurrentUrl(), URL);
 
     }
-
-
-
 
 
     @And("resimleri indirir")
@@ -65,8 +62,8 @@ public class amazonStepDefinitions {
 
     @Then("kullanici {string} Basligina Tiklar ve daha sonra {string}")
     public void kullaniciBasliginaTiklarVeDahaSonra(String title, String electronics) throws InterruptedException {
-        List<WebElement> titles=Driver.getDriver().findElements(By.xpath("//a[@class='hmenu-item']//div"));
-        for (int i = 0; i <titles.size() ; i++) {
+        List<WebElement> titles = Driver.getDriver().findElements(By.xpath("//a[@class='hmenu-item']//div"));
+        for (int i = 0; i < titles.size(); i++) {
             if (titles.get(i).getText().equals(title)) {
                 ReusableMethods.waitFor(2);
                 titles.get(i).click();
@@ -75,14 +72,14 @@ public class amazonStepDefinitions {
         }
 
 
-        List<WebElement> InElectronics=Driver.getDriver().findElements(By.xpath("//ul[@class='hmenu hmenu-visible hmenu-translateX']//li//a"));
+        List<WebElement> InElectronics = Driver.getDriver().findElements(By.xpath("//ul[@class='hmenu hmenu-visible hmenu-translateX']//li//a"));
 
-        for (int i = 0; i <InElectronics.size() ; i++) {
+        for (int i = 0; i < InElectronics.size(); i++) {
             if (InElectronics.get(i).getText().equals(electronics)) {
                 ReusableMethods.waitFor(2);
                 try {
                     InElectronics.get(i).click();
-                }catch (StaleElementReferenceException e){
+                } catch (StaleElementReferenceException e) {
 
                 }
 
@@ -137,7 +134,7 @@ public class amazonStepDefinitions {
 
     @And("The user sees the text {string}.")
     public void theUserSeesTheText(String userText) {
-    amazonPage.usersSignInText.getText().equals("Hello, mehmet");
+        amazonPage.usersSignInText.getText().equals("Hello, mehmet");
     }
 
     @When("User enters invalid password.")
@@ -183,21 +180,21 @@ public class amazonStepDefinitions {
         Thread.sleep(2000);
         amazonPage.closeToAccount.click();
     }
+
     @Then("The user selects the appropriate filter to list the products he has listed.")
     public void the_user_selects_the_appropriate_filter_to_list_the_products_he_has_listed() throws InterruptedException {
         try {
-        List<WebElement> checkBox=Driver.getDriver().findElements(By.xpath("(//div[@class='a-checkbox a-checkbox-fancy s-navigation-checkbox aok-float-left'])"));
-        for (int i = 0; i <checkBox.size() ; i++) {
-            Random r =new Random();
-            checkBox.get(r.nextInt(checkBox.size())).click();
-        }
-        Thread.sleep(3000);
-        }catch ( ElementClickInterceptedException e){
-    }catch (StaleElementReferenceException e){
+            List<WebElement> checkBox = Driver.getDriver().findElements(By.xpath("(//div[@class='a-checkbox a-checkbox-fancy s-navigation-checkbox aok-float-left'])"));
+            for (int i = 0; i < checkBox.size(); i++) {
+                Random r = new Random();
+                checkBox.get(r.nextInt(checkBox.size())).click();
+            }
+            Thread.sleep(3000);
+        } catch (ElementClickInterceptedException e) {
+        } catch (StaleElementReferenceException e) {
 
         }
     }
-
 
 
     @And("The user sees that the filtered products are listed.")
@@ -208,16 +205,16 @@ public class amazonStepDefinitions {
 
     @When("The user searches and lists the {string} he wants to buy in the search box")
     public void theUserSearchesAndListsTheHeWantsToBuyInTheSearchBox(String aranacakKelime) throws InterruptedException {
-        List<String>prices=new ArrayList<>();
+        List<String> prices = new ArrayList<>();
 
         amazonPage.searchBox.sendKeys(aranacakKelime + Keys.ENTER);
-        String first=amazonPage.firstProduct.getText();
+        String first = amazonPage.firstProduct.getText();
         amazonPage.firstProduct.click();
         Thread.sleep(3000);
 
-        prices.add(amazonPage.prodPrice.getText()+","+amazonPage.prodPriceFrac.getText());
+        prices.add(amazonPage.prodPrice.getText() + "," + amazonPage.prodPriceFrac.getText());
         System.out.println(prices);
-        System.out.println("Price : "+amazonPage.prodPrice.getText()+","+amazonPage.prodPriceFrac.getText());
+        System.out.println("Price : " + amazonPage.prodPrice.getText() + "," + amazonPage.prodPriceFrac.getText());
 
     }
 
@@ -230,15 +227,15 @@ public class amazonStepDefinitions {
 
     @And("User goes to cart.")
     public void userGoesToCart() throws InterruptedException {
-     amazonPage.goToCart.click();
-     Thread.sleep(3000);
-     Log.info("go to cart");
+        amazonPage.goToCart.click();
+        Thread.sleep(3000);
+        Log.info("go to cart");
     }
 
     @And("The user confirms that the selected products have been added to the cart.")
     public void theUserConfirmsThatTheSelectedProductsHaveBeenAddedToTheCart() {
-        List<WebElement>basketList=Driver.getDriver().findElements(By.xpath("(//span[@class='a-truncate a-size-medium'])"));
-        for (int i = 0; i <basketList.size() ; i++) {
+        List<WebElement> basketList = Driver.getDriver().findElements(By.xpath("(//span[@class='a-truncate a-size-medium'])"));
+        for (int i = 0; i < basketList.size(); i++) {
             System.out.println(basketList.get(i).getText());
         }
     }
@@ -252,40 +249,39 @@ public class amazonStepDefinitions {
 
     @When("User goes to FOOTER.")
     public void userGoesToFOOTER() {
-        Actions actions=new Actions(Driver.getDriver());
+        Actions actions = new Actions(Driver.getDriver());
         actions.sendKeys(Keys.END).perform();
         Assert.assertTrue(amazonPage.footer.isDisplayed());
         Log.info("Amazon Footer görünür mü?");
     }
 
     @Then("The user clicks on a link.")
-    public void theUserClicksOnALink()  {
-      try{
-        List<WebElement>footerLinks=Driver.getDriver().findElements(By.xpath("(//a[@class='nav_a'])"));
+    public void theUserClicksOnALink() {
+        try {
+            List<WebElement> footerLinks = Driver.getDriver().findElements(By.xpath("(//a[@class='nav_a'])"));
 
 
+            for (int i = 0; i < footerLinks.size() - 3; i++) {
+                Random r = new Random();
+                footerLinks.get(r.nextInt(footerLinks.size() - 3)).click();
+                System.out.println(r.nextInt(footerLinks.size() - 3));
+            }
+            Log.info("Footer Amazon Science Linkine tiklandi");
+        } catch (StaleElementReferenceException staleElementReferenceException) {
 
-        for (int i = 0; i <footerLinks.size()-3 ; i++) {
-            Random r=new Random();
-            footerLinks.get(r.nextInt(footerLinks.size()-3)).click();
-            System.out.println(r.nextInt(footerLinks.size()-3));
         }
-        Log.info("Footer Amazon Science Linkine tiklandi");
-      }catch (StaleElementReferenceException staleElementReferenceException ){
-
-      }
     }
 
     @And("The user verifies the title of the page he is directed to.")
     public void theUserVerifiesTheTitleOfThePageHeIsDirectedTo() {
 
-        Log.info("Amazon Footer"+Driver.getDriver().getTitle() +"sayfasına gidildi");
+        Log.info("Amazon Footer" + Driver.getDriver().getTitle() + "sayfasına gidildi");
     }
 
 
     @And("User hover-over Account &Lists.")
     public void userHoverOverAccountLists() {
-        Actions actions=new Actions(Driver.getDriver());
+        Actions actions = new Actions(Driver.getDriver());
         actions.moveToElement(amazonPage.usersSignInText).perform();
     }
 
@@ -310,21 +306,21 @@ public class amazonStepDefinitions {
     @And("User clicks end of Create a List button.")
     public void userClicksEndOfCreateAListButton() throws InterruptedException {
         Thread.sleep(2000);
-      amazonPage.endOfCreateAListButon.click();
-      Log.info("new list created");
+        amazonPage.endOfCreateAListButon.click();
+        Log.info("new list created");
     }
 
     @Given("User verifies that the list is created.")
     public void userVerifiesThatTheListIsCreated() {
         Assert.assertTrue(amazonPage.NewlistName.getText().equals(ConfigReader.getProperty("listName")));
-    Log.info("List name is True");
+        Log.info("List name is True");
     }
 
     @Then("User goes to Manage list.")
     public void userGoesToManageList() throws InterruptedException {
 
-      Actions actions=new Actions(Driver.getDriver());
-      actions.moveToElement(amazonPage.ucNokta).click().perform();
+        Actions actions = new Actions(Driver.getDriver());
+        actions.moveToElement(amazonPage.ucNokta).click().perform();
         Thread.sleep(2000);
         amazonPage.manageYourList.click();
     }
@@ -342,7 +338,8 @@ public class amazonStepDefinitions {
         Assert.assertTrue(amazonPage.forAllYourShoppingNeeds.isDisplayed());
         Log.info("liste silindi ,for all your shopping needs yazisi görünür");
     }
-//    String firstProduct=amazonPage.firstProduct.getText();
+
+    //    String firstProduct=amazonPage.firstProduct.getText();
     @Then("The user goes to the product page.")
     public void theUserGoesToTheProductPage() throws InterruptedException {
         ReusableMethods.waitForPageToLoad(3);
